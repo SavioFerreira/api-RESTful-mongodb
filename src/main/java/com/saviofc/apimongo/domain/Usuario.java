@@ -1,15 +1,20 @@
 package com.saviofc.apimongo.domain;
 
-public class User {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collation = "User")
+public class Usuario {
+    @Id
     private String id;
     private String name;
     private String email;
 
-    public User(){
+    public Usuario(){
 
     }
 
-    public User(String id, String name, String email){
+    public Usuario(String id, String name, String email){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -42,9 +47,9 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (!(o instanceof Usuario)) return false;
 
-        User user = (User) o;
+        Usuario user = (Usuario) o;
 
         return getId() != null ? getId().equals(user.getId()) : user.getId() == null;
     }
