@@ -1,6 +1,6 @@
 package com.saviofc.apimongo.resources;
 
-import com.saviofc.apimongo.domain.Usuario;
+import com.saviofc.apimongo.domain.User;
 import com.saviofc.apimongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class UserResource {
     private UserService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Usuario>> findAll() {
-        List<Usuario> list = service.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        List<User> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
