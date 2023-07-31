@@ -1,6 +1,7 @@
 package com.saviofc.apimongo.services;
 
 import com.saviofc.apimongo.domain.User;
+import com.saviofc.apimongo.dto.UserDTO;
 import com.saviofc.apimongo.repositories.UserRepository;
 import com.saviofc.apimongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class UserService {
 
         return userOptional.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado para o ID: " + id));
 
+    }
+
+    public User insert(User obj){
+
+        return repository.insert(obj);
+    }
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
