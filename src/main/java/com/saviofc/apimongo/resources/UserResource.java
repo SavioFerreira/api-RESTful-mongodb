@@ -1,5 +1,6 @@
 package com.saviofc.apimongo.resources;
 
+import com.saviofc.apimongo.domain.Post;
 import com.saviofc.apimongo.domain.User;
 import com.saviofc.apimongo.dto.UserDTO;
 import com.saviofc.apimongo.services.UserService;
@@ -56,6 +57,12 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts",method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
