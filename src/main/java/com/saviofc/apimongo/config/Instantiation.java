@@ -2,6 +2,7 @@ package com.saviofc.apimongo.config;
 
 import com.saviofc.apimongo.domain.Post;
 import com.saviofc.apimongo.domain.User;
+import com.saviofc.apimongo.dto.AuthorDTO;
 import com.saviofc.apimongo.repositories.PostRepository;
 import com.saviofc.apimongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,11 @@ public class Instantiation implements CommandLineRunner {
         User chopper = new User(null, "Chopper","chopper@onepiece.com");
         User usopp = new User(null, "Usopp","usopp@onepiece.com");
 
-        Post postUm = new Post(null, sdf.parse("31/07/2023"), "Cap Usopp", "Meu nome é Capitão Usopp!!", usopp );
-        Post postDois = new Post(null, sdf.parse("30/07/2023"), "Doc Chopper", "Eu vou achar a cura para todas as doenças do mundo!", chopper );
-
         userRepository.saveAll(Arrays.asList(luffy, chopper, usopp));
+
+        Post postUm = new Post(null, sdf.parse("31/07/2023"), "Cap Usopp", "Meu nome é Capitão Usopp!!", new AuthorDTO(usopp));
+        Post postDois = new Post(null, sdf.parse("30/07/2023"), "Doc Chopper", "Eu vou criar a cura para todas as doenças do mundo!", new AuthorDTO(chopper));
+
         postRepository.saveAll(Arrays.asList(postUm, postDois));
     }
 }
