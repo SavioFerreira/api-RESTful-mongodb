@@ -41,5 +41,7 @@ public class Instantiation implements CommandLineRunner {
         Post postDois = new Post(null, sdf.parse("30/07/2023"), "Doc Chopper", "Eu vou criar a cura para todas as doenças do mundo!", new AuthorDTO(chopper));
 
         postRepository.saveAll(Arrays.asList(postUm, postDois));
+
+        chopper.getPosts().add(postUm);
     }
 }
