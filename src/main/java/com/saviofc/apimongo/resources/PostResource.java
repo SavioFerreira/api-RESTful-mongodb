@@ -3,6 +3,7 @@ package com.saviofc.apimongo.resources;
 import com.saviofc.apimongo.domain.Post;
 import com.saviofc.apimongo.domain.User;
 import com.saviofc.apimongo.dto.UserDTO;
+import com.saviofc.apimongo.resources.util.URL;
 import com.saviofc.apimongo.services.PostService;
 import com.saviofc.apimongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,13 @@ public class PostResource {
         Post obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+
+    @RequestMapping(value="/titlesearch", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+
+        text = URL.decodeParam(text);
+        List<Post> list = service.findByTitle(text);
+        return ResponseEntity.ok().body(list);
+    }
+
 }
